@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Resources;
 
-use App\Models\Category;
+use App\Models\ReceiptItem;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
 
-/** @mixin Category */
-class ShopResource extends JsonResource
+/** @mixin ReceiptItem */
+class ReceiptItemResource extends JsonResource
 {
     public function toArray($request): array
     {
         return [
             'id' => $this->id,
+            'category' => CategoryResource::make($this->category),
             'name' => $this->name,
-            'logo' => Storage::url($this->logo),
-            'color' => $this->color,
+            'quantity' => $this->quantity,
+            'price' => $this->price,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

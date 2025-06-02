@@ -10,7 +10,8 @@ class CreateCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'unique:categories,name'],
-            'logo' => ['required', 'image']
+            'logo' => ['required', 'image'],
+            'color' => ['required', 'string'],
         ];
     }
 }

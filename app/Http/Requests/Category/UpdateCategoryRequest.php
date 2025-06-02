@@ -10,7 +10,8 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'unique:categories,name,' . $this->route('category')],
-            'logo' => ['image']
+            'logo' => ['image'],
+            'color' => ['required', 'string'],
         ];
     }
 }

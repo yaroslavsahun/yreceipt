@@ -25,6 +25,7 @@ class CategoryController extends Controller
 
         $path = $request->file('logo')->storePublicly('categories');
         $category->logo = $path;
+        $category->color = $request->validated('color');
         $category->save();
 
         return response()->json(new CategoryResource($category));
@@ -40,8 +41,8 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, string $id): JsonResponse
     {
         $category = Category::query()->findOrFail($id);
-        $category->name = $request->input('name');
-
+        $category->name = $request->validated('name');
+        $category->color = $request->validated('color');
         if($request->hasFile('logo')) {
             $path = $request->file('logo')->storePublicly('categories');
             $category->logo = $path;

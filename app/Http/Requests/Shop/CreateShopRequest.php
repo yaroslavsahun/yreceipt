@@ -10,7 +10,8 @@ class CreateShopRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'unique:shops,name'],
-            'logo' => ['required', 'image']
+            'logo' => ['required', 'image'],
+            'color' => ['required', 'string'],
         ];
     }
 }

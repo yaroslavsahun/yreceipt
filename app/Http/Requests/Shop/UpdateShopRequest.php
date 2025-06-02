@@ -10,7 +10,8 @@ class UpdateShopRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'unique:shops,name,' . $this->route('shop')],
-            'logo' => ['image']
+            'logo' => ['image'],
+            'color' => ['required', 'string'],
         ];
     }
 }

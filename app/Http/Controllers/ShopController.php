@@ -22,7 +22,7 @@ class ShopController extends Controller
     {
         $shop = new Shop();
         $shop->name = $request->validated('name');
-
+        $shop->color = $request->validated('color');
         $path = $request->file('logo')->storePublicly('shops');
         $shop->logo = $path;
         $shop->save();
@@ -40,7 +40,8 @@ class ShopController extends Controller
     public function update(UpdateShopRequest $request, string $id): JsonResponse
     {
         $shop = Shop::query()->findOrFail($id);
-        $shop->name = $request->input('name');
+        $shop->name = $request->validated('name');
+        $shop->color = $request->validated('color');
 
         if($request->hasFile('logo')) {
             $path = $request->file('logo')->storePublicly('shops');
